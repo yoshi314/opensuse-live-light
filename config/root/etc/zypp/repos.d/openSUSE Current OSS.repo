@@ -1,0 +1,7 @@
+[openSUSE Current OSS]
+name=openSUSE Current OSS
+enabled=1
+autorefresh=1
+baseurl=http://download.opensuse.org/distribution/openSUSE-current/repo/oss/
+type=NONE
+keeppackages=0

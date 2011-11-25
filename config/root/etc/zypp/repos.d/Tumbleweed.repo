@@ -1,0 +1,7 @@
+[Tumbleweed]
+name=Tumbleweed
+enabled=1
+autorefresh=1
+baseurl=http://download.opensuse.org/repositories/openSUSE:/Tumbleweed/standard/
+type=NONE
+keeppackages=0

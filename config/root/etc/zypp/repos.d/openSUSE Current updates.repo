@@ -1,0 +1,7 @@
+[openSUSE Current updates]
+name=openSUSE Current updates
+enabled=1
+autorefresh=1
+baseurl=http://download.opensuse.org/update/openSUSE-current/
+type=NONE
+keeppackages=0
