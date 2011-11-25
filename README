@@ -5,3 +5,5 @@ It's fairly minimal atm, i plan to try to expand on it.
 In order to build it, kiwi appliance builder is required. You can install is on most rpm-based distributions.
 
 Template was adapted from 11.4 minimal openbox appliance from suse-studio.
+
+If you want to integrate any extra files into the image, pack them into config-cdroot.tgz (it can be plain tar archive) and put it under config/
