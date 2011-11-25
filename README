@@ -1,0 +1,7 @@
+this is a template relatively small livecd packed with openbox.
+
+It's fairly minimal atm, i plan to try to expand on it.
+
+In order to build it, kiwi appliance builder is required. You can install is on most rpm-based distributions.
+
+Template was adapted from 11.4 minimal openbox appliance from suse-studio.

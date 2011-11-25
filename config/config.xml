@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<image name='SuSE_Openbox_Remix_testground' displayname='SuSE_Openbox_Remix_testground' schemeversion='2.4'>
+  <description type='system'>
+    <author>Marcin Kowalski</author>
+    <contact>studio-devel@suse.de</contact>
+    <specification>A text-only base</specification>
+  </description>
+  <preferences>
+    <type flags='clic' checkprebuilt='true' fsnocheck='true' hybrid='true' boot='isoboot/suse-12.1'>iso</type>
+    <version>0.0.1</version>
+    <packagemanager>zypper</packagemanager>
+    <rpm-check-signatures>False</rpm-check-signatures>
+    <rpm-force>False</rpm-force>
+    <boot-theme>openSUSE</boot-theme>
+    <rpm-excludedocs>true</rpm-excludedocs>
+    <locale>pl_PL</locale>
+  </preferences>
+  <users group='root'>
+    <user name='root' pwd='$1$CCjtRVhh$ptIX/JNw7aZtM6aIbnSTh.' shell='/bin/bash' home='/root'/>
+  </users>
+  <users group='users'>
+    <user name='tux' pwd='$1$YUQxcO8m$XEooV9fb6/NU7colZArqy1' shell='/bin/bash' home='/home/tux'/>
+  </users>
+  <split>
+    <temporary>
+      <file name='/var'/>
+      <file name='/var/*'/>
+      <file name='/etc'/>
+      <file name='/etc/*'/>
+      <file name='/tmp'/>
+      <file name='/tmp/*'/>
+      <file name='/home'/>
+      <file name='/home/*'/>
+    </temporary>
+  </split>
+  <packages patternType='onlyRequired' type='image' patternPackageType='onlyRequired'>
+    <opensusePattern name='base'/>
+    <opensusePattern name='x11'/>
+    <package name='kernel-default'/>
+    <package name='syslog-ng'/>
+    <package name='SuSEfirewall2'/>
+    <package name='bootsplash-branding-openSUSE'/>
+    <package name='obconf'/>
+    <package name='openbox'/>
+    <package name='ConsoleKit-x11'/>
+    <package name='dbus-1-x11'/>
+    <package name='iputils'/>
+<!--    <package name='glib2-branding-openSUSE'/> -->
+    <package name='less'/>
+    <package name='mdadm'/>
+    <package name='vim'/>
+    <package name='x11-tools'/>
+    <package name='xorg-x11-driver-input'/>
+    <package name='xorg-x11-driver-video'/>
+    <package name='xorg-x11-fonts'/>
+    <package name='xorg-x11-server'/>
+    <package name='yast2'/>
+    <package name='yast2-firstboot'/>
+    <package name='yast2-ncurses'/>
+    <package name='yast2-gtk'/>
+    <package name='zypper'/>
+    <package name='xorg-x11-driver-video-unichrome'/>
+    <package name='xorg-x11-driver-video-nouveau'/>
+    <package name='xorg-x11-driver-video-radeonhd'/>
+    <package name='yast2-live-installer'/>
+    <package name='yast2-users'/>
+    <package name='midori'/>
+    <package name='midori-lang'/>
+    <package name='kernel-firmware'/>
+    <archive bootinclude='true' name='bootsplash.tar'/>
+  </packages>
+  <packages type='bootstrap'>
+    <package name='filesystem'/>
+    <package name='glibc-locale'/>
+  </packages>
+  <repository type='rpm-md'>
+    <source path='http://download.opensuse.org/update/12.1'/>
+  </repository>
+  <repository type='yast2'>
+    <source path='http://download.opensuse.org/distribution/12.1/repo/oss'/>
+  </repository>
+</image>

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <studio_uuid>8466bd24-fd59-11df-9f90-475ae2f5345b</studio_uuid>
+  <appliance_uuid>da343a18-1515-11e1-6180-b7f80aeb8010</appliance_uuid>
+  <config>
+    <image displayname="SuSE_Openbox_Remix_testground" schemeversion="2.4" name="SuSE_Openbox_Remix_testground">
+      <description type="system">
+        <author>Marcin Kowalski</author>
+        <contact>studio-devel@suse.de</contact>
+        <specification>A text-only base</specification>
+      </description>
+      <preferences>
+        <type fsnocheck="true" flags="clic" hybrid="true" checkprebuilt="true" boot="isoboot/suse-11.4">iso</type>
+        <version>0.0.1</version>
+        <packagemanager>ensconce</packagemanager>
+        <rpm-check-signatures>False</rpm-check-signatures>
+        <rpm-force>False</rpm-force>
+        <boot-theme>studio</boot-theme>
+        <locale>en_US</locale>
+      </preferences>
+      <users group="root">
+        <user name="root" pwd="$1$CCjtRVhh$ptIX/JNw7aZtM6aIbnSTh." home="/root" shell="/bin/bash"/>
+      </users>
+      <users group="users">
+        <user name="tux" pwd="$1$YUQxcO8m$XEooV9fb6/NU7colZArqy1" home="/home/tux" shell="/bin/bash"/>
+      </users>
+      <repository type="rpm-md">
+        <source path="http://download.opensuse.org/update/11.4"/>
+      </repository>
+      <repository type="yast2">
+        <source path="http://download.opensuse.org/distribution/11.4/repo/oss"/>
+      </repository>
+      <split>
+        <temporary>
+          <file name="/var"/>
+          <file name="/var/*"/>
+          <file name="/etc"/>
+          <file name="/etc/*"/>
+          <file name="/tmp"/>
+          <file name="/tmp/*"/>
+          <file name="/home"/>
+          <file name="/home/*"/>
+        </temporary>
+      </split>
+      <packages type="image" patternType="onlyRequired" patternPackageType="onlyRequired">
+        <opensusePattern name="base"/>
+        <opensusePattern name="x11"/>
+        <package name="kernel-default"/>
+        <package name="syslog-ng"/>
+        <package name="SuSEfirewall2"/>
+        <package name="bootsplash-branding-openSUSE"/>
+        <package name="obconf"/>
+        <package name="openbox"/>
+        <package name="ConsoleKit-x11"/>
+        <package name="dbus-1-x11"/>
+        <package name="iputils"/>
+        <package name="glib2-branding-openSUSE"/>
+        <package name="less"/>
+        <package name="mdadm"/>
+        <package name="vim"/>
+        <package name="x11-tools"/>
+        <package name="xorg-x11-driver-input"/>
+        <package name="xorg-x11-driver-video"/>
+        <package name="xorg-x11-fonts"/>
+        <package name="xorg-x11-server"/>
+        <package name="yast2"/>
+        <package name="yast2-firstboot"/>
+        <package name="yast2-ncurses"/>
+        <package name="zypper"/>
+        <package name="xorg-x11-driver-video-unichrome"/>
+        <package name="xorg-x11-driver-video-nouveau"/>
+        <package name="xorg-x11-driver-video-radeonhd"/>
+        <package name="yast2-live-installer"/>
+        <package name="yast2-users"/>
+        <archive bootinclude="true" name="bootsplash.tar"/>
+      </packages>
+      <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="glibc-locale"/>
+      </packages>
+    </image>
+  </config>
+  <extra_config name="SuSE_Openbox_Remix_testground">
+    <appliance_id>517174</appliance_id>
+    <kiwi_version>4.98.15</kiwi_version>
+    <arch>i686</arch>
+    <version>0.0.1</version>
+    <logo>ed/61389244702ff26ba36765cf2fb820</logo>
+    <background>5a/e4b9afa3d9c2dfc66dcf386689d98d</background>
+    <base_system>11.4</base_system>
+    <image_type>iso</image_type>
+    <time_zone>Europe/Berlin</time_zone>
+    <region>Europe</region>
+    <default_runlevel>5</default_runlevel>
+    <install_recommended>false</install_recommended>
+    <xen_host>false</xen_host>
+    <exclude_docs>false</exclude_docs>
+    <disable_branding>false</disable_branding>
+    <template>openSUSE 11.3, Server</template>
+    <locale>
+      <language>en_US.UTF-8</language>
+      <keytable>us.map.gz</keytable>
+    </locale>
+    <estimated_size>790</estimated_size>
+    <size_offset>0</size_offset>
+    <oem_disk_size>16G</oem_disk_size>
+    <check_supportability upgrade_sam="true">false</check_supportability>
+    <repository type="rpm-md">
+      <source internal="false" path="http://download.opensuse.org/update/11.4"/>
+      <name>openSUSE 11.4 Updates</name>
+    </repository>
+    <repository type="yast2">
+      <source internal="false" path="http://download.opensuse.org/distribution/11.4/repo/oss"/>
+      <name>openSUSE 11.4 OSS</name>
+    </repository>
+    <network config="dhcp">
+    </network>
+    <startup_programs>
+    </startup_programs>
+    <overlay_files remove="">
+    </overlay_files>
+    <firewall>
+      <firewall_enabled>yes</firewall_enabled>
+      <firewall_ssh>opened</firewall_ssh>
+      <firewall_http>opened</firewall_http>
+      <firewall_webyast>closed</firewall_webyast>
+    </firewall>
+    <webyast enabled="false">
+    </webyast>
+    <x_keyboard SL="" variant="" RC="" layout="us" keycode="xfree86" OPT="" LA="" model="microsoftpro" RA=""/>
+    <enable_root_firstboot>false</enable_root_firstboot>
+    <gpg_keys>
+      <gpg_key name="repository_key_1" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+mQENBEkUTD8BCADWLy5d5IpJedHQQSXkC1VK/oAZlJEeBVpSZjMCn8LiHaI9Wq3G
+3Vp6wvsP1b3kssJGzVFNctdXt5tjvOLxvrEfRJuGfqHTKILByqLzkeyWawbFNfSQ
+93/8OunfSTXC1Sx3hgsNXQuOrNVKrDAQUqT620/jj94xNIg09bLSxsjN6EeTvyiO
+mtE9H1J03o9tY6meNL/gcQhxBvwuo205np0JojYBP0pOfN8l9hnIOLkA0yu4ZXig
+oKOVmf4iTjX4NImIWldT+UaWTO18NWcCrujtgHueytwYLBNV5N0oJIP2VYuLZfSD
+VYuPllv7c6O2UEOXJsdbQaVuzU1HLocDyipnABEBAAG0NG9wZW5TVVNFIFByb2pl
+Y3QgU2lnbmluZyBLZXkgPG9wZW5zdXNlQG9wZW5zdXNlLm9yZz6JATwEEwECACYC
+GwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAUCS+GITQUJClIKDgAKCRC4iy/UPb3C
+hCtvCACELgrgzAbLw8p4PfsHzrEAvZbaWSLpSOCV4ZQdo0Q9vaHcsjENXfnZ7ctu
+hDnyVSmzy4HcVfBfLmK1xkI8ByXK9JGXt3RXuZWHBuaJQKM0hbAZZ/ScMUOs6Igu
+2gmyDaJyrf1vBPtNWpMSS8Jp10iJ9/5B5Hlq4UJxMwTGZwcddhRl/UQKErygdnVg
+o5zTdyB05BKF4KEIvdbl9xSfifLfOT8CGBpCmnUmD6YB7agXm3OAM9bZGa2v9ipm
+s/haLqxS+b4plYKDN8d8xc2whEfTQD158VW0giv38w6NAd6kCxq2pg5L5PmpF9DM
+BZl8K2SBMEtV7BYK9wfnxaRl6Wh/
+=uF5Q
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_2" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQENBEkUTD8BCADWLy5d5IpJedHQQSXkC1VK/oAZlJEeBVpSZjMCn8LiHaI9Wq3G
+3Vp6wvsP1b3kssJGzVFNctdXt5tjvOLxvrEfRJuGfqHTKILByqLzkeyWawbFNfSQ
+93/8OunfSTXC1Sx3hgsNXQuOrNVKrDAQUqT620/jj94xNIg09bLSxsjN6EeTvyiO
+mtE9H1J03o9tY6meNL/gcQhxBvwuo205np0JojYBP0pOfN8l9hnIOLkA0yu4ZXig
+oKOVmf4iTjX4NImIWldT+UaWTO18NWcCrujtgHueytwYLBNV5N0oJIP2VYuLZfSD
+VYuPllv7c6O2UEOXJsdbQaVuzU1HLocDyipnABEBAAG0NG9wZW5TVVNFIFByb2pl
+Y3QgU2lnbmluZyBLZXkgPG9wZW5zdXNlQG9wZW5zdXNlLm9yZz6JATwEEwECACYC
+GwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAUCS+GITQUJClIKDgAKCRC4iy/UPb3C
+hCtvCACELgrgzAbLw8p4PfsHzrEAvZbaWSLpSOCV4ZQdo0Q9vaHcsjENXfnZ7ctu
+hDnyVSmzy4HcVfBfLmK1xkI8ByXK9JGXt3RXuZWHBuaJQKM0hbAZZ/ScMUOs6Igu
+2gmyDaJyrf1vBPtNWpMSS8Jp10iJ9/5B5Hlq4UJxMwTGZwcddhRl/UQKErygdnVg
+o5zTdyB05BKF4KEIvdbl9xSfifLfOT8CGBpCmnUmD6YB7agXm3OAM9bZGa2v9ipm
+s/haLqxS+b4plYKDN8d8xc2whEfTQD158VW0giv38w6NAd6kCxq2pg5L5PmpF9DM
+BZl8K2SBMEtV7BYK9wfnxaRl6Wh/
+=uF5Q
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_3" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQGiBEHtkpsRBACRHiXh3olS++6/Mp9N7ByGMmjaaE+Y8cJQLUPG1myrbW5aogIP
+0WenayhGbbgOHNWgd5dQ8KQpYYFoQuUHjFYzj5MvgrdOENOvD7ZNJ6+EmbkNh5cV
+zUYfNG9jdiGweZkyA1sh8DYS0JiUmQ4CzaBD/DotB/dCmDcyuNQFiw4qKwCglQah
+ATyueBRsOiXl0NIs1uB6dkkD/1A2YmQ6te1q38a1J+a8os6bDlMZhVnkZdhJdw6x
+eBwUb9XS0n7hyt/AKCcBnrDEUQJuhBMNgzctJvbuMv27yRMANAXZDQkp0ip/yHLJ
+PhUdSNTTRHOL9bV3t+JuZ9xmuclprwyrrJYUkEESXNc0tkuczHBP2c/RqA3OxYHt
+hrHLA/9Pqe2gEleeo8l26u/uFXs2dtwjh8EZmdhHoqGcOlpYR4DyAg2D+jYfh3RI
+oPzIwRlHVUR1ii5h8iPi98BVuEvukwfbbQ1K22Jwzxt6w3ihCXBKWKbeC3ElIMfA
+hVMchLFUbTAw+yodO/u3NHxKQ34+ginid9dVyxV5T0gpDEEHObQrT3BlbiBFbnRl
+cnByaXNlIFNlcnZlciA8c3VwcG9ydEBub3ZlbGwuY29tPoheBBMRAgAeBQJB7ZKb
+AhsDBgsJCAcDAgMVAgMDFgIBAh4BAheAAAoJEHPSXWMN+zGID4oAoJPTGZbZApW+
+tuU422mHYGwoqgjrAJ9fhzRhRbV3YsOxKUomNeuIfmWGXA==
+=Qv5+
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_4" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mIsERCAdXQEEAL7MrBTz+3SBWpCm2ae2yaDqV3ezQcs2JlvqidJVhsZqQe9/jkxi
+KTEQW5+TXF/+BlQSiebunRI7oo3+9U8GyRCgs1sf+yRQWMLzZqRaarzRhw9w+Ihl
+edtqYl6/U2JZCb8Adp6d7RzlRliJdJ/VtsfXj2ef7Dwu7elOVSsmaBdtAAYptChT
+dVNFIFBhY2thZ2UgU2lnbmluZyBLZXkgPGJ1aWxkQHN1c2UuZGU+iLgEEwECACIC
+GwMECwcDAgMVAgMDFgIBAh4BAheABQJL4BplBQkPRMsIAAoJEOOlw2Awfj1UhOsD
+/RkkEhOIC9NNad0F5O0rEJxvsI7Nm+6FnNJq8LjyR5+87epQCXgpaBXEGd4RcjjO
+TukLaHHrC1T/h4biIyf253VZHr4oJ46sUivNUFq60gl4gk56aTGTNeUWOsgrU4jm
+auFca3dbGcNfiJ7c7dF2CkOAR+CPMLPYTvuVIRQBAjeS
+=jKkp
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_5" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQENAzbhLQQAAAEIAKAkXHe0lWRBXLpn38hMHy03F0I4Sszmoc8aaKJrhfhyMlOA
+BqvklPLE2f9UrI4Xc860gH79ZREwAgPt0pi6+SleNFLNcNFAuuHMLQOOsaMFatbz
+JR9i4m/lf6q929YROu5zB48rBAlcfTm+IBbijaEdnqpwGib45wE/Cfy6FAttBHQh
+1Kp+r/jPbf1mYAvljUfHKuvbg8t2EIQz/5yGp+n5trn9pElfQO2cRBq8LFpf1l+U
+P7EKjFmlOq+Gs/fF98/dP3DfniSd78LQPq5vp8RL8nr/o2i7jkAQ33m4f1wOBWd+
+cZovrKXYlXiR+Bf7m2hpZo+/sAzhd7LmAD0l09kABRG0JVN1U0UgU2VjdXJpdHkg
+VGVhbSA8c2VjdXJpdHlAc3VzZS5kZT6JARUDBRA24S1H5Fiyh7HKPEUBAVcOB/9b
+yHYji1/+4Xc2GhvXK0FSJN0MGgeXgW47yxDL7gmR4mNgjlIOUHZj0PEpVjWepOJ7
+tQS3L9oP6cpj1Fj/XxuLbkp5VCQ61hpt54coQAvYrnT9rtWEGN+xmwejT1WmYmDJ
+xG+EGBXKr+XP69oIUl1E2JO3rXeklulgjqRKos4cdXKgyjWZ7CP9V9daRXDtje63
+Om8gwSdU/nCvhdRIWp/Vwbf7Ia8iZr9OJ5YuQl0DBG4qmGDDrvImgPAFkYFzwlqo
+choXFQ9y0YVCV41DnR+GYhwl2qBd81T8aXhihEGPIgaw3g8gd8B5o6mPVgl+nJqI
+BkEYGBusiag2pS6qwznZiQEVAwUQNuEtBHey5gA9JdPZAQFtOAf+KVh939b0J94u
+v/kpg4xs1LthlhquhbHcKNoVTNspugiC3qMPyvSX4XcBr2PC0cVkS4Z9PY9iCfT+
+x9WM96g39dAF+le2CCx7XISk9XXJ4ApEy5g4AuK7NYgAJd39PPbERgWnxjxir9g0
+Ix30dS30bW39D+3NPU5Ho9TD/B7UDFvYT5AWHl3MGwo3a1RhTs6sfgL7yQ3U+mvq
+MkTExZb5mfN1FeaYKMopoI4VpzNVeGxQWIz67VjJHVyUlF20ekOz4kWVgsxkc8G2
+saqZd6yv2EwqYTi8BDAduweP33KrQc4KDDommQNDOXxaKOeCoESIdM4p7Esdjq1o
+L0oixF12CohGBBARAgAGBQI7HmHDAAoJEJ5A4xAACqukTlQAoI4QzP9yjPohY7OU
+F7J3eKBTzp25AJ42BmtSd3pvm5ldmognWF3Trhp+GYkAlQMFEDe3O8IWkDf+zvyS
+FQEBAfkD/3GG5UgJj18UhYmh1gfjIlDcPAeqMwSytEHDENmHC+vlZQ/p0mT9tPiW
+tp34io54mwr+bLPN8l6B5GJNkbGvH6M+mO7R8Lj4nHL6pyAv3PQr83WyLHcaX7It
+Klj371/4yzKV6qpz43SGRK4MacLo2rNZ/dNej7lwPCtzCcFYwqkiiEYEEBECAAYF
+AjoaQqQACgkQx1KqMrDf94ArewCfWnTUDG5gNYkmHG4bYL8fQcizyA4An2eVo/n+
+3J2KRWSOhpAMsnMxtPbB
+=Ay23
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_6" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQGiBEeWWzMRBADU8l2IckSzgdUS1dn0WMM7wXK4seoFsHHQw/0unHCQCxpyDMnn
+TKV86p5KTbR1FDdeaZlY0yCV+IGsiIxLyuUdJn8vuA5gA5ZkUr89/HtWaeZVl77J
+HIQxvhDRBWCOO4QNtrZYWvGbvl83wl/zOfdLEs8IGElt0LgfohyTA1qfrwCg/Hac
+tDDscXsPlo5Jek/+3RHVeD0D/30riCpfpLJOmhraLg1EbWsE0mN9IQsl+WDPdoYo
+bB76z6eH3e38618WzP/LTG4WuVbwpSSqmXyfdVpXxWzESfT8q0B8CGpHf/Sa/T/L
+emohmRnLvkf/tAfxFmDMm1jOewJIE9S35jANGHVJcxmfRNpPWC7uHnqjopnsmDkL
+kMEdBAC6YcpDOcMJZ9sJbt/JNZBaoT5CltgMDlSN50t2v/J5em8qMLqCSNF5UJyd
+LFnePHTHy6gVjWbqcC0ncFzOqM1y644Up7BoKSAr1hRTl6Mw9S3UfZZZ0al3JtWt
+8y0eFIW3QP66w1AL0LO2bZMBuOvhb63DXv5iHorcxk0yIFbbybRCb3BlblNVU0U6
+RmFjdG9yeSBPQlMgUHJvamVjdCA8b3BlblNVU0U6RmFjdG9yeUBidWlsZC5vcGVu
+c3VzZS5vcmc+iGYEExECACYCGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAUCS+GM
+qwUJC8//eAAKCRAcchwkVrQXenCfAKCiI/uNClNI32AaPU36o2mFIUKcHgCfby3/
+8UEqkeBRFM1zyjHBo2w/GYyIRgQQEQIABgUCS+GOAgAKCRA7MBG3a51lI2PoAJ9+
+OORElEjcmtUu0pOhatgoEx+DoACfcJMHcdT+8ckq17RsEgWuS/4dGVM=
+=uu+g
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_7" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQGiBER0iroRBADfqUeJmPCXqPJFnf3CVKy40dL1F+gfvP+JHN7/uu4c9+oCYjI1
+uAE8iGTm/Twb/Zzbs4dt0iWjhNFXbRi42rMww4d/8QcPYZ21WSehh+fv8nCjt2sw
+LeC87ar2SR8OTpJBK0fQlcd4e6H5GMntfI6SYEUOPd8m/eQ+4+1AxpUUpwCgswaF
+13fePZGI//pDn5tGjbvmaP8D/R3qum/I+oDS8lbFeeDS10GkEkwTYec13gdfsq6I
+yzIj7VBsC+rGfbipv+VGR61Q4d19pOHKLDekr9OG+3G4ZcYM4NQvQZR+QIlp3xWu
+nBmYD1LRkHLVj+Z4DGQhjjOffkPSuacKPymMaZ/aRiLgTIAo97W2YPhutscXrLSG
+2Y+BA/4jsyaDb7kbW4wc8RtPIcuFEheVqgBeRakP9Uj47kBMBEpPtI/mIdY5liKk
+ztKnuQG6ROYLNV/PW0ZbE1uT64C710weh4cB3PnZLV5P10deDLBjHk8MJQGCTSDD
+JYvhutUzQfshAU6j2kErGvKdZxWGezab34vFyMP2oLGqswPAJrRQTm92ZWxsIFBy
+b3ZvIEJ1aWxkIChDb250YWN0IHNlY3VyaXR5QG5vdmVsbC5jb20pIDxub3ZlbGwt
+cHJvdm8tYnVpbGRAbm92ZWxsLmNvbT6IZgQTEQIAJgIbAwYLCQgHAwIEFQIIAwQW
+AgMBAh4BAheABQJL4DfKBQkO9G+QAAoJEBTCi8l+LjsFWJ0AoIRm3ZLa4FoQ4/rD
+nWb0DlZZWJRmAJwPdtR6KhW3eZNEi0YJEJ09dlCBsA==
+=2leo
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_8" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQGiBDnu9IERBACT8Y35+2vv4MGVKiLEMOl9GdST6MCkYS3yEKeueNWc+z/0Kvff
+4JctBsgs47tjmiI9sl0eHjm3gTR8rItXMN6sJEUHWzDP+Y0PFPboMvKx0FXl/A0d
+M+HFrruCgBlWt6FA+okRySQiliuI5phwqkXefl9AhkwR8xocQSVCFxcwvwCglVcO
+QliHu8jwRQHxlRE0tkwQQI0D+wfQwKdvhDplxHJ5nf7U8c/yE/vdvpN6lF0tmFrK
+XBUX+K7u4ifrZlQvj/81M4INjtXreqDiJtr99Rs6xa0ScZqITuZC4CWxJa9GynBE
+D3+D2t1V/f8l0smsuYoFOF7Ib49IkTdbtwAThlZp8bEhELBeGaPdNCcmfZ66rKUd
+G5sRA/9ovnc1krSQF2+sqB9/o7w5/q2qiyzwOSTnkjtBUVKn4zLUOf6aeBAoV6NM
+CC3Kj9aZHfA+ND0ehPaVGJgjaVNFhPi4x0e7BULdvgOoAqajLfvkURHAeSsxXIoE
+myW/xC1sBbDkDUIBSx5oej73XCZgnj/inphRqGpsb+1nKFvF+rQoU3VTRSBQYWNr
+YWdlIFNpZ25pbmcgS2V5IDxidWlsZEBzdXNlLmRlPohiBBMRAgAiAhsDBAsHAwID
+FQIDAxYCAQIeAQIXgAUCS+AZmQUJGXXzGAAKCRCoTtronIAKyl9KAJ9KyC11XDiC
+lhuqOJ+Q0yPL5Ge/aQCePxBrVWcVaAjGq4vTkwMkiD9FVMK5Ag0EOe70khAIAISR
+0E3ozF/la+oNaRwxHLrCet30NgnxRROYhPaJB/Tu1FQokn2/Qld/HZnh3TwhBIw1
+FqrhWBJ7491iAjLR9uPbdWJrn+A7t8kSkPaF3Z/6kyc5a8fas44ht5h+6HMBzoFC
+MAq2aBHQRFRNp9Mz1ZvoXXcI1lk1l8OqcUM/ovXbDfPcXsUVeTPTtGzcAi2jVl9h
+l3iwJKkyv/RLmcusdsi8YunbvWGFAF5GaagYQo7YlF6UaBQnYJTM523AMgpPQtsK
+m9o/w9WdgXkgWhgkhZEeqUS3m5xNey1nLu9iMvq9M/iXnGz4sg6Q2Y+GqZ+yAvNW
+jRRou3zSE7Bzg28MI4sAAwYH/2D71Xc5HPDgu87WnBFgmp8MpSr8QnSs0wwPg3xE
+ullGEocolSb2c0ctuSyeVnCttJMzkukL9TqyF4s/6XRstWirSWawJxRLKH6Zjo/F
+aKsshYKf8gBkAaddvpl3pO0gmUYbqmpQ3xDEYlhCeieXS5MkockQ1sj2xYdB1xO0
+ExzfiCiscUKjUFy+mdzUsUutafuZ+gbHog1CN/ccZCkxcBa5IFCHORrNjq9pYWlr
+xsEn6ApsG7JJbM2besW1PkdEoxak74z1senh36m5jQvVjA3U4xq1wwylxadmmJaJ
+HzeiLfb7G1ZRjZTsB7fyYxqDzMVul6o9BSwO/1XsIAnV1uuITAQYEQIADAUCS+AZ
+vQUJGXXzKwAKCRCoTtronIAKysYeAJ4yNHu8lpjQiBL69k3VNr9hbQMmzwCfcrIB
+TnsG384Q1YOf9lIUSYEa9sk=
+=yIuV
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+      <gpg_key name="repository_key_9" target="rpm">
+        <![CDATA[-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+mQILBERqCJkBEACdqhZWdAbUHLIumXMEgv+GFjr1ZzVHgynnFOzztU/8sxZNa9cm
+YV4HZpVfjMr7fos3ArzyiPPt/336cf7w9p79/ZS4rHSNPDMlPCtXYvFxUbvU0/GY
+q4jwcBsrJ0xaJ9CP5bWyAgVKOb7Y6k0ktaLjRR+tDfMsHA4H0ClMoRr6ATw8NL0e
+VCfAHuzqCKvX1If8ng+wTivtAhKvz/WwQiELNELmPfc5tZHOw8NgP/r0Pze18Hn2
+dlAHu0WpC7uoR00vscsMIJiJJPcsxbL1F1eADKnk+wEy8Go+EJeJ5i0WoFbqD52q
+Lv/C/oY6NVtVY0MBwtn+oQNSnQ4JBsB/Akdt53LAi0ZtNQxMyUW+76R8FCOmVCV8
+WGiF5CPRP0yvG80AMBjBjKjHb/v8ov5MnIyFimzAHS1gQcUNxTEYA/5eFwoYcGcK
+weGq9FUjPTzLQAgvp7XmOzHpSAfJ7qysxFTepNsSZZhgizJyInrdQldr+GYcUNqB
+krD9MWmFop975OxhCTEnNv/HcE79r8WD26HzDFYxTiTJbr0pU/ivBzo+rjq+YG2V
+stJk+udVYmZTnC4LmXus8JiNuqBXbxNscwCBpcJ8YcfCV6uh+7E0XfXZsgVUFLp1
+NF+ylYRGTycOlWoZODrnJevZW7N9O3bWRx/G2P4bJD07LsDLe4i5hymf5QAGKbRQ
+Tm92ZWxsIFByb3ZvIEJ1aWxkIChDb250YWN0IHNlY3VyaXR5QG5vdmVsbC5jb20p
+IDxub3ZlbGwtcHJvdm8tYnVpbGRAbm92ZWxsLmNvbT6JAjMEEwECAB0FAkRqCJkG
+CwkIBwMCBBUCCAMEFgIDAQIeAQIXgAAKCRBHijLooZEiCKSFD/93vZHCAMLEfksU
+KnvXl08bv1rfuamuyJnE3ANRE5RDyypriHMCnkVxazvQ2WI4W4UEjluL9+SzZwtV
+ZvKVoAr31614nSyWwv2YnJTHfjMG+xRlkolZMnuIiB9PcCBo9+GPU0ABuzo4pEJW
+NIRoSS1NFbAZBhtUnY0cN+trM5QObLl7xXTavLyGk//blkk57fov7GXsQJlZUig0
+l2yt5XNyGpLUnTMDumHh8b389quF+0+ZfdwOy7A768xjipAZiTvIujBrEv51wrxh
+0HBT0VGA0MhD9t0B+Ce4BM9P/iVMO00naaOp6PqMfPPKxQQqer8qy1i6UWBx95SY
+mKZBIvOm2d9PezDxkckCu61r6krx1iKnT1wdprCAkIYwALK118SpbxuyGW0bhRHc
+wsc/akzWH72fS0Xu49mvL4k4A2U9asdeQid3dMgbtm5mSWof0yiU/G4YNn0yeXoY
+oG1VbCAqQbFX1Rvd6GITJVqI+ekW/uMA9BP78dF8wBeG0+QmpQnSf+eOsxB/RT8o
+Kb4hHY+29MUlg+i9ceVt7hoKr03J/uIG5TXFXRYLaI0iAFVlKfWxpqDfS2XA4+dD
+VYt+5RDgBcnxDaTB4FE9GqcYScNfe7+NFtL0p0wOPftbmgZzGjucTmrD8mDUNdqA
+xGK7vlk4GATSfOQlq7G6LXW6RYnInohGBBMRAgAGBQJEazMlAAoJEKhO2uicgArK
+2vMAn0TbVDESEVKVuFZStrfIzOvJQrR9AJsH733Ju1kE99GFrdfCeGqpckmNhg==
+=E+qN
+-----END PGP PUBLIC KEY BLOCK-----
+]]>
+      </gpg_key>
+    </gpg_keys>
+    <window_manager></window_manager>
+    <display_manager></display_manager>
+  </extra_config>
+</manifest>
