@@ -16,10 +16,10 @@
     <locale>pl_PL</locale>
   </preferences>
   <users group='root'>
-    <user name='root' pwd='$1$CCjtRVhh$ptIX/JNw7aZtM6aIbnSTh.' shell='/bin/bash' home='/root'/>
+    <user name='root' pwd='linux' pwdformat="plain" shell='/bin/bash' home='/root'/>
   </users>
   <users group='users'>
-    <user name='tux' pwd='$1$YUQxcO8m$XEooV9fb6/NU7colZArqy1' shell='/bin/bash' home='/home/tux'/>
+    <user name='tux' pwd='linux' pwdformat="plain" shell='/bin/bash' home='/home/tux'/>
   </users>
   <split>
     <temporary>
