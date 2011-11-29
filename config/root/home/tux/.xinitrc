@@ -1,0 +1,1 @@
+ck-launch-session openbox-session

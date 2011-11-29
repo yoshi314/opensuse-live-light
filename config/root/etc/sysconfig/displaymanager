@@ -7,7 +7,7 @@
 # Here you can set the default Display manager (kdm/xdm/gdm/wdm/console).
 # all changes in this file require a restart of the displaymanager
 #
-DISPLAYMANAGER=""
+DISPLAYMANAGER="slim"
 
 ## Type:	yesno
 ## Default:	no

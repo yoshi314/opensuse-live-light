@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<image name='SuSE_Openbox_Remix_testground' displayname='SuSE_Openbox_Remix_testground' schemeversion='2.4'>
+<image name='openbox' displayname='openbox' schemeversion='2.4'>
   <description type='system'>
     <author>Marcin Kowalski</author>
     <contact>studio-devel@suse.de</contact>
@@ -16,10 +16,10 @@
     <locale>pl_PL</locale>
   </preferences>
   <users group='root'>
-    <user name='root' pwd='linux' pwdformat="plain" shell='/bin/bash' home='/root'/>
+    <user name='root' pwd='$1$CCjtRVhh$ptIX/JNw7aZtM6aIbnSTh.' shell='/bin/bash' home='/root'/>
   </users>
   <users group='users'>
-    <user name='tux' pwd='linux' pwdformat="plain" shell='/bin/bash' home='/home/tux'/>
+    <user name='tux' pwd='$1$YUQxcO8m$XEooV9fb6/NU7colZArqy1' shell='/bin/bash' home='/home/tux'/>
   </users>
   <split>
     <temporary>
@@ -34,7 +34,7 @@
     </temporary>
   </split>
   <packages patternType='onlyRequired' type='image' patternPackageType='onlyRequired'>
-    <opensusePattern name='base'/>
+<!--    <opensusePattern name='base'/> -->
     <opensusePattern name='x11'/>
     <package name='kernel-default'/>
     <package name='syslog-ng'/>
@@ -45,7 +45,6 @@
     <package name='ConsoleKit-x11'/>
     <package name='dbus-1-x11'/>
     <package name='iputils'/>
-<!--    <package name='glib2-branding-openSUSE'/> -->
     <package name='less'/>
     <package name='mdadm'/>
     <package name='vim'/>
@@ -57,7 +56,6 @@
     <package name='yast2'/>
     <package name='yast2-firstboot'/>
     <package name='yast2-ncurses'/>
-    <package name='yast2-gtk'/>
     <package name='zypper'/>
     <package name='xorg-x11-driver-video-unichrome'/>
     <package name='xorg-x11-driver-video-nouveau'/>
@@ -67,7 +65,8 @@
     <package name='midori'/>
     <package name='midori-lang'/>
     <package name='kernel-firmware'/>
-    <archive bootinclude='true' name='bootsplash.tar'/>
+    <package name='tint2'/>
+    <package name='slim'/>
   </packages>
   <packages type='bootstrap'>
     <package name='filesystem'/>
@@ -78,5 +77,11 @@
   </repository>
   <repository type='yast2'>
     <source path='http://download.opensuse.org/distribution/12.1/repo/oss'/>
+  </repository>
+  <repository type='rpm-md'>
+    <source path='http://packman.inode.at/suse/openSUSE_12.1'/>
+  </repository>
+  <repository type="rpm-dir">
+    <source path="config/rpms"/>
   </repository>
 </image>
