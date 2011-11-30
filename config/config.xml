@@ -70,6 +70,9 @@
     <package name='NetworkManager'/>
     <package name='NetworkManager-gnome'/>
     <package name='mc'/>
+    <package name='gmrun'/>
+    <package name='sudo'/>
+    <package name='pcmanfm'/>
   </packages>
   <packages type='bootstrap'>
     <package name='filesystem'/>
