@@ -35,6 +35,8 @@
   </split>
   <packages patternType='onlyRequired' type='image' patternPackageType='onlyRequired'>
 <!--    <opensusePattern name='base'/> -->
+    <package name="bootsplash-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+    <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
     <opensusePattern name='x11'/>
     <package name='kernel-default'/>
     <package name='syslog-ng'/>
