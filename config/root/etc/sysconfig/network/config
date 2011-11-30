@@ -33,6 +33,14 @@ CHECK_DUPLICATE_IP="no"
 
 ## Type:        yesno
 ## Default:     no
+# If ifup should send a gratuitous ARP to inform the receivers about its
+# static IP addresses and perhaps also a link-layer (MAC) address change.
+# Make sure that packet sockets (CONFIG_PACKET) are supported in the kernel,
+# since this feature uses arping, which depends on that.
+SEND_GRATUITOUS_ARP="no"
+
+## Type:        yesno
+## Default:     no
 # Switch on/off debug messages for all network configuration stuff. If set to no
 # most scripts can enable it locally with "-o debug".
 DEBUG="no"
@@ -135,6 +143,28 @@ MANDATORY_DEVICES=""
 #
 WAIT_FOR_INTERFACES="30"
 
+## Type:        integer
+## Default:     0
+#
+# The number of seconds to wait for link to become useable / ready.
+# Default is 0, causing to not wait for a ready link (0), because link
+# detection can't be enabled in all cases (e.g. bridges without ports).
+# Please use per interface settings to enable it.
+#
+LINK_READY_WAIT=0
+
+## Type:        integer
+## Default:     ""
+#
+# The number of seconds to wait for the end of IPv6 duplicate address
+# detection in ifup.
+# Default is to use WAIT_FOR_INTERFACES/2 seconds in normal ifup runs.
+# When ifup is called by /etc/init.d/network at boot time, the check
+# is done, but /etc/init.d/network waits WAIT_FOR_INTERFACES seconds
+# for all interfaces togerther. Set to 0 to disable it.
+#
+IPV6_DAD_WAIT=""
+
 ## Type:	yesno
 ## Default:	yes
 #
@@ -165,8 +195,10 @@ IFPLUGD_OPTIONS="-f -I -b"
 ## Type:        yesno
 ## Default:     no
 #
-# Instead of the usual network setup (now called 'NetControl') you may also use
-# 'NetworkManager' to control your interfaces.
+# Instead of the usual network setup (now called 'NetControl') you may also
+# use 'NetworkManager' to control your interfaces. This option is used by
+# the /etc/init.d/network(-remotefs) script to control, which network stack
+# has to be used: NetControl alias ifup or NetworkManager.
 #
 # NetControl is what you were used to in SUSE Linux up to now. It has a wide
 # range of configurations means for setting up any number of different virtual
@@ -175,29 +207,32 @@ IFPLUGD_OPTIONS="-f -I -b"
 # - have many interfaces
 # - need VLAN, bonding, bridging, multiple IP addresses
 # - must restrict network control to root
-# It may also switch interfaces automatically, but lacks a usable GUI for normal
-# users.
+# It may also switch interfaces automatically, but does not provide a GUI.
+# When you want a GUI, try out 'kinternet' using NetControl as backend.
 #
 # NetworkManager lets the user control interfaces and switches automatically if
 # network interfaces lose/gain physical connection. It should be used if you:
 # - move between networks frequently
 # - want a GUI for network control
 # Especially on mobile computers that use mainly one wired and one wireless
-# interface NetworkManager will please you.
+# interface NetworkManager may please you.
 #
-# If you are used to SCPM then you might probably stay with NetControl. But at
+# If you are useing SCPM, then you might probably stay with NetControl. But at
 # least try NetworkManager, because it can replace SCPM in some usage scenarios.
+#
+# Note: NetworkManager is not using any sysconfig settings but its own
+#       configuration files only.
 # 
-NETWORKMANAGER="no"
+NETWORKMANAGER=yes
 
 ## Type:	int
 ## Default:	0
 #
 # When using NetworkManager you may define a timeout to wait for NetworkManager
-# to connect.  Other network services may require the system to have a valid
-# network setup in order to succeed.
+# to connect in /etc/init.d/network(-remotefs) script.  Other network services
+# may require the system to have a valid network setup in order to succeed.
 # 
-# This variable has no effect if NETWORKMANAGER=no
+# This variable has no effect if NETWORKMANAGER=no.
 #
 NM_ONLINE_TIMEOUT="0"
 
@@ -220,17 +255,31 @@ NETCONFIG_MODULES_ORDER="dns-resolver dns-bind dns-dnsmasq nis ntp-runtime"
 #
 NETCONFIG_DNS_POLICY="auto"
 
-## Type:        string
+## Type:        string(resolver,bind,dnsmasq,)
 ## Default:     "resolver"
 #
 # Defines the name of the DNS forwarder that has to be configured.
+# Currently implemented are "bind", "dnsmasq" and "resolver", that
+# causes to write the name server IP addresses to /etc/resolv.conf
+# only (no forwarder). Empty string defaults to "resolver".
 #
 NETCONFIG_DNS_FORWARDER="resolver"
+
+## Type:        yesno
+## Default:     yes
+#
+# When enabled (default) in forwarder mode ("bind", "dnsmasq"),
+# netconfig writes an explicit localhost nameserver address to the
+# /etc/resolv.conf, followed by the policy resolved name server list
+# as fallback for the moments, when the local forwarder is stopped.
+#
+NETCONFIG_DNS_FORWARDER_FALLBACK="yes"
 
 ## Type:        string
 ## Default:     ""
 #
 # List of DNS domain names used for host-name lookup.
+# It is written as search list into the /etc/resolv.conf file.
 #
 NETCONFIG_DNS_STATIC_SEARCHLIST=""
 
@@ -238,8 +287,27 @@ NETCONFIG_DNS_STATIC_SEARCHLIST=""
 ## Default:     ""
 #
 # List of DNS nameserver IP addresses to use for host-name lookup.
+# When the NETCONFIG_DNS_FORWARDER variable is set to "resolver",
+# the name servers are written directly to /etc/resolv.conf.
+# Otherwise, the nameserver are written into a forwarder specific
+# configuration file and the /etc/resolv.conf does not contain any
+# nameservers causing the glibc to use the name server on the local
+# machine (the forwarder). See also netconfig(8) manual page.
 #
 NETCONFIG_DNS_STATIC_SERVERS=""
+
+## Type:        string
+## Default:     "auto"
+#
+# Allows to specify a custom DNS service ranking list, that is which
+# services provide preferred (e.g. vpn services), and which services
+# fallback settings (e.g. avahi).
+# Preferred service names have to be prepended with a "+", fallback
+# service names with a "-" character. The special default value
+# "auto" enables the current build-in service ranking list -- see the
+# netconfig(8) manual page -- "none" or "" disables the ranking.
+#
+NETCONFIG_DNS_RANKING="auto"
 
 ## Type:        string
 ## Default:     "auto"
@@ -264,7 +332,7 @@ NETCONFIG_NTP_STATIC_SERVERS=""
 #
 NETCONFIG_NIS_POLICY="auto"
 
-## Type:        string
+## Type:        string(yes,no,)
 ## Default:     "yes"
 #
 # Defines whether to set the default NIS domain. When enabled and no domain
@@ -296,3 +364,21 @@ NETCONFIG_NIS_STATIC_DOMAIN=""
 # domain specified with same "_<number>" suffix.
 #
 NETCONFIG_NIS_STATIC_SERVERS=""
+
+## Type:	string
+## Default:	''
+#
+# Set this variable global variable to the ISO / IEC 3166 alpha2
+# country code specifying the wireless regulatory domain to set.
+# When not empty, ifup-wireless will be set in the wpa_supplicant
+# config or via 'iw reg set' command.
+#
+# Note: This option requires a wpa driver supporting it, like
+# the 'nl80211' driver used by default since openSUSE 11.3.
+# When you notice problems with your hardware, please file a
+# bug report and set e.g. WIRELESS_WPA_DRIVER='wext' (the old
+# default driver) in the ifcfg file.
+# See also "/usr/sbin/wpa_supplicant --help" for the list of
+# available wpa drivers.
+#
+WIRELESS_REGULATORY_DOMAIN=''

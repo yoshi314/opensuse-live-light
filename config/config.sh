@@ -1,5 +1,8 @@
 #!/bin/bash
 
+test -f /.kconfig && . /.kconfig
+test -f /.profile && . /.profile
+
 #======================================
 # Greeting...
 #--------------------------------------
@@ -14,8 +17,12 @@ suseConfig
 echo "** Running ldconfig..."
 /sbin/ldconfig
 
-chkconfig earlyxdm on
-chkconfig xdm on
+echo "** setting up services **"
+
+
+#stip unnecessary libs
+baseStripUnusedLibs
+
 
 #======================================
 #--------------------------------------
