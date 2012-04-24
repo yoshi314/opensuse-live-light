@@ -48,20 +48,18 @@ rmdir /var/lib/livecd || true
 # SuSEconfig
 #--------------------------------------
 suseConfig
-SuSEconfig --module permissions
 
 rm -rf /var/cache/zypp/packages
 
 # bug 544314
 sed -i -e 's,^\(.*pam_gnome_keyring.so.*\),#\1,'  /etc/pam.d/common-auth-pc
 
-echo '127.0.0.2       linux.site linux' >> /etc/hosts
-
 baseSetRunlevel 5
 baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER_AUTOLOGIN tux
-baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER slim
+baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER gdm
 baseUpdateSysConfig /etc/sysconfig/keyboard KEYTABLE us.map.gz
 baseUpdateSysConfig /etc/sysconfig/keyboard YAST_KEYBOARD english-us,pc104
 baseUpdateSysConfig /etc/sysconfig/clock HWCLOCK "-u"
 
 baseUpdateSysConfig /etc/sysconfig/network/config NETWORKMANAGER yes
+

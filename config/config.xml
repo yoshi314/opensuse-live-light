@@ -3,7 +3,7 @@
   <description type='system'>
     <author>Marcin Kowalski</author>
     <contact>studio-devel@suse.de</contact>
-    <specification>A text-only base</specification>
+    <specification>opensuse live media with openbox</specification>
   </description>
   <preferences>
     <type flags='clic' checkprebuilt='true' fsnocheck='true' hybrid='true' boot='isoboot/suse-12.1'>iso</type>
@@ -33,12 +33,13 @@
       <file name='/home/*'/>
     </temporary>
   </split>
-  <packages patternType='onlyRequired' type='image' patternPackageType='onlyRequired'>
-<!--    <opensusePattern name='base'/> -->
+  <packages patternType='onlyRequired' type='image' patternPackageType='plusRecommended'>
+    <opensusePattern name='base'/> 
     <package name="bootsplash-branding-openSUSE" bootinclude="true" bootdelete="true"/>
     <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
     <opensusePattern name='x11'/>
     <package name='kernel-default'/>
+    <package name='man'/>
     <package name='syslog-ng'/>
     <package name='SuSEfirewall2'/>
     <package name='bootsplash-branding-openSUSE'/>
@@ -68,13 +69,18 @@
     <package name='midori-lang'/>
     <package name='kernel-firmware'/>
     <package name='tint2'/>
-    <package name='slim'/>
+<!--    <package name='slim'/>  -->
+    <package name='gdm'/>
     <package name='NetworkManager'/>
     <package name='NetworkManager-gnome'/>
     <package name='mc'/>
     <package name='gmrun'/>
     <package name='sudo'/>
     <package name='pcmanfm'/>
+    <package name='man-pages'/>
+    <package name='man'/>
+    <package name='lynx'/>
+<!--    <package name='geeqie'/>  -->
   </packages>
   <packages type='bootstrap'>
     <package name='filesystem'/>
@@ -88,6 +94,9 @@
   </repository>
   <repository type='rpm-md'>
     <source path='http://packman.inode.at/suse/openSUSE_12.1'/>
+  </repository>
+  <repository type='rpm-md'>
+    <source path='http://download.opensuse.org/repositories/graphics/openSUSE_12.1'/>
   </repository>
   <repository type="rpm-dir">
     <source path="config/rpms"/>

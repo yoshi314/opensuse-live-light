@@ -15,4 +15,7 @@ rpm -e --nodeps --noscripts \
 #------------------------------------------
 umount /proc &>/dev/null
 
+echo "127.0.0.2       linux.site linux" >> /etc/hosts
+echo "127.0.0.1       suse-openbox localhost" >> /etc/hosts
+
 exit 0
