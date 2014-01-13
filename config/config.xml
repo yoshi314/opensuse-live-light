@@ -1,104 +1,149 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<image name='openbox' displayname='openbox' schemeversion='2.4'>
-  <description type='system'>
-    <author>Marcin Kowalski</author>
-    <contact>studio-devel@suse.de</contact>
-    <specification>opensuse live media with openbox</specification>
-  </description>
-  <preferences>
-    <type flags='clic' checkprebuilt='true' fsnocheck='true' hybrid='true' boot='isoboot/suse-12.1'>iso</type>
-    <version>0.0.1</version>
-    <packagemanager>zypper</packagemanager>
-    <rpm-check-signatures>False</rpm-check-signatures>
-    <rpm-force>False</rpm-force>
-    <boot-theme>openSUSE</boot-theme>
-    <rpm-excludedocs>true</rpm-excludedocs>
-    <locale>pl_PL</locale>
-  </preferences>
-  <users group='root'>
-    <user name='root' pwd='$1$CCjtRVhh$ptIX/JNw7aZtM6aIbnSTh.' shell='/bin/bash' home='/root'/>
-  </users>
-  <users group='users'>
-    <user name='tux' pwd='$1$YUQxcO8m$XEooV9fb6/NU7colZArqy1' shell='/bin/bash' home='/home/tux'/>
-  </users>
-  <split>
-    <temporary>
-      <file name='/var'/>
-      <file name='/var/*'/>
-      <file name='/etc'/>
-      <file name='/etc/*'/>
-      <file name='/tmp'/>
-      <file name='/tmp/*'/>
-      <file name='/home'/>
-      <file name='/home/*'/>
-    </temporary>
-  </split>
-  <packages patternType='onlyRequired' type='image' patternPackageType='plusRecommended'>
-    <opensusePattern name='base'/> 
-    <package name="bootsplash-branding-openSUSE" bootinclude="true" bootdelete="true"/>
-    <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
-    <opensusePattern name='x11'/>
-    <package name='kernel-default'/>
-    <package name='man'/>
-    <package name='syslog-ng'/>
-    <package name='SuSEfirewall2'/>
-    <package name='bootsplash-branding-openSUSE'/>
-    <package name='obconf'/>
-    <package name='openbox'/>
-    <package name='ConsoleKit-x11'/>
-    <package name='dbus-1-x11'/>
-    <package name='iputils'/>
-    <package name='less'/>
-    <package name='mdadm'/>
-    <package name='vim'/>
-    <package name='x11-tools'/>
-    <package name='xorg-x11-driver-input'/>
-    <package name='xorg-x11-driver-video'/>
-    <package name='xorg-x11-fonts'/>
-    <package name='xorg-x11-server'/>
-    <package name='yast2'/>
-    <package name='yast2-firstboot'/>
-    <package name='yast2-ncurses'/>
-    <package name='zypper'/>
-    <package name='xorg-x11-driver-video-unichrome'/>
-    <package name='xorg-x11-driver-video-nouveau'/>
-    <package name='xorg-x11-driver-video-radeonhd'/>
-    <package name='yast2-live-installer'/>
-    <package name='yast2-users'/>
-    <package name='midori'/>
-    <package name='midori-lang'/>
-    <package name='kernel-firmware'/>
-    <package name='tint2'/>
-<!--    <package name='slim'/>  -->
-    <package name='gdm'/>
-    <package name='NetworkManager'/>
-    <package name='NetworkManager-gnome'/>
-    <package name='mc'/>
-    <package name='gmrun'/>
-    <package name='sudo'/>
-    <package name='pcmanfm'/>
-    <package name='man-pages'/>
-    <package name='man'/>
-    <package name='lynx'/>
-<!--    <package name='geeqie'/>  -->
-  </packages>
-  <packages type='bootstrap'>
-    <package name='filesystem'/>
-    <package name='glibc-locale'/>
-  </packages>
-  <repository type='rpm-md'>
-    <source path='http://download.opensuse.org/update/12.1'/>
-  </repository>
-  <repository type='yast2'>
-    <source path='http://download.opensuse.org/distribution/12.1/repo/oss'/>
-  </repository>
-  <repository type='rpm-md'>
-    <source path='http://packman.inode.at/suse/openSUSE_12.1'/>
-  </repository>
-  <repository type='rpm-md'>
-    <source path='http://download.opensuse.org/repositories/graphics/openSUSE_12.1'/>
-  </repository>
-  <repository type="rpm-dir">
-    <source path="config/rpms"/>
-  </repository>
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="5.9" name="LimeJeOS-openSUSE-13.1">
+	<description type="system">
+		<author>Marcus Schäfer</author>
+		<contact>ms@novell.com</contact>
+		<specification>
+			openSUSE 13.1 JeOS, is a small text based image
+		</specification>
+	</description>
+	<profiles>
+		<profile name="xenFlavour" description="VMX with Xen kernel"/>
+		<profile name="vmxFlavour" description="VMX with default kernel" import="true"/>
+	</profiles>
+	<preferences>
+		<type image="iso" primary="true" boot="isoboot/suse-13.1" flags="overlay" hybrid="true" firmware="efi"/>
+		<version>1.13.1</version>
+		<packagemanager>zypper</packagemanager>
+		<locale>en_US</locale>
+		<keytable>us.map.gz</keytable>
+		<timezone>Europe/Berlin</timezone>
+		<hwclock>utc</hwclock>
+		<rpm-excludedocs>true</rpm-excludedocs>
+		<bootsplash-theme>openSUSE</bootsplash-theme>
+		<bootloader-theme>openSUSE</bootloader-theme>
+	</preferences>
+	<preferences profiles="xenFlavour">
+		<type image="vmx" filesystem="ext3" boot="vmxboot/suse-13.1" bootprofile="xen" bootkernel="xenk" bootloader="grub2">
+			<machine memory="512" domain="domU">
+				<vmdisk id="0" device="/dev/xvda" controller="ide"/>
+				<vmnic interface=""/>
+			</machine>
+		</type>
+		<type image="oem" filesystem="ext3" boot="oemboot/suse-13.1" bootprofile="xen" bootkernel="xenk" installiso="true" bootloader="grub2">
+			<oemconfig>
+				<oem-systemsize>2048</oem-systemsize>
+				<oem-swap>true</oem-swap>
+			</oemconfig>
+			<machine domain="dom0">
+				<vmdisk id="0" controller="ide"/>
+			</machine>
+		</type>
+	</preferences>
+	<preferences profiles="vmxFlavour">
+		<type image="vmx" filesystem="ext3" boot="vmxboot/suse-13.1" format="vmdk" bootloader="grub2">
+			<machine memory="512" guestOS="suse" HWversion="4">
+				<vmdisk id="0" controller="ide"/>
+				<vmnic driver="e1000" interface="0" mode="bridged"/>
+			</machine>
+		</type>
+		<type image="oem" filesystem="ext3" boot="oemboot/suse-13.1" installiso="true" bootloader="grub2">
+			<oemconfig>
+				<oem-systemsize>2048</oem-systemsize>
+				<oem-swap>true</oem-swap>
+			</oemconfig>
+			<machine memory="512" guestOS="suse" HWversion="4">
+				<vmdisk id="0" controller="ide"/>
+				<vmnic driver="e1000" interface="0" mode="bridged"/>
+			</machine>
+		</type>
+	</preferences>
+	<users group="root">
+		<user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+	</users>
+	<users group="users">
+		<user password="tux" home="/home/tux" name="tux" pwdformat="plain"/>
+	</users>
+	<repository type="yast2">
+		<source path="obs://13.1/repo/oss"/>
+	</repository>
+	<repository type="rpm-md">
+		<source path="http://download.opensuse.org/repositories/X11:/Enlightenment:/Factory/openSUSE_13.1/"/>
+	</repository>
+	<repository type="rpm-md">
+		<source path="http://download.opensuse.org/repositories/home:/serg0/openSUSE_13.1/"/>
+	</repository>
+	<repository type="rpm-md">
+		<source path="http://packman.inode.at/suse/openSUSE_13.1/"/>
+	</repository>
+	<repository type="rpm-md">
+		<source path="http://download.opensuse.org/repositories/home:/FrodeSolheim:/devel/openSUSE_13.1/"/>
+	</repository>
+
+	<packages type="image">
+		<namedCollection name="base"/>
+		<namedCollection name="Enlightenment_17"/>
+		<opensuseProduct name="openSUSE"/>
+		<package name="xorg-x11-driver-video"/>
+		<package name="xorg-x11-driver-input"/>
+		<package name="plymouth-branding-openSUSE" bootinclude="true"/>
+		<package name="grub2-branding-openSUSE" bootinclude="true"/>
+		<package name="ifplugd"/>
+		<package name="iputils"/>
+		<package name="vim"/>
+		<package name="grub2"/>
+		<package name="syslinux"/>
+		<package name="lvm2"/>
+		<package name="plymouth"/>
+		<package name="fontconfig"/>
+		<package name="fonts-config"/>
+		<package name="tar"/>
+		<package name="parted"/>
+		<package name="lightdm"/>
+		<package name="i3"/>
+		<package name="MozillaFirefox"/>
+		<package name="audacious-plugins"/>
+		<package name="audacious"/>
+		<package name="NetworkManager-gnome"/>
+		<package name="vlc"/>
+		<package name="mpv"/>
+		<package name="smplayer2"/>
+		<package name="dmenu"/>
+		<package name="alsa"/>
+		<package name="geeqie"/>
+		<package name="geany"/>
+		<package name="NetworkManager-openconnect-gnome"/>
+		<package name="openssh"/>
+		<package name="fs-uae"/>
+		
+
+	</packages>
+	<packages type="iso">
+		<package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+	</packages>
+	<packages type="oem">
+		<package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+	</packages>
+	<packages type="image" profiles="xenFlavour">
+		<package name="kernel-xen" replaces="kernel-default"/>
+		<package name="xen-tools" arch="x86_64" replaces=""/>
+		<package name="xen" arch="x86_64" replaces=""/>
+	</packages>
+	<packages type="image" profiles="vmxFlavour">
+		<package name="kernel-default" replaces="kernel-xen"/>
+		<package name="kernel-default" replaces="xen-tools"/>
+		<package name="kernel-default" replaces="xen"/>
+	</packages>
+	<packages type="bootstrap">
+		<package name="udev"/>
+		<package name="filesystem"/>
+		<package name="glibc-locale"/>
+		<package name="cracklib-dict-full"/>
+		<package name="ca-certificates"/>
+		<package name="module-init-tools"/>
+	</packages>
+	<packages type="delete">
+		<package name="kernel-debug"/>
+	</packages>
 </image>
