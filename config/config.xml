@@ -95,6 +95,7 @@
 		<package name="grub2"/>
 		<package name="syslinux"/>
 		<package name="lvm2"/>
+		<package name="less"/>
 		<package name="plymouth"/>
 		<package name="fontconfig"/>
 		<package name="fonts-config"/>
@@ -116,7 +117,7 @@
 		<package name="NetworkManager-openconnect-gnome"/>
 		<package name="openssh"/>
 		<package name="fs-uae"/>
-		
+<!--		<package name="dwb"/>  -->
 
 	</packages>
 	<packages type="iso">
