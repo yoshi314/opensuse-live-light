@@ -80,6 +80,9 @@
 	<repository type="rpm-md">
 		<source path="http://download.opensuse.org/repositories/home:/FrodeSolheim:/devel/openSUSE_13.1/"/>
 	</repository>
+	<repository type="rpm-md">
+		<source path="http://download.opensuse.org/repositories/home:/wengo/openSUSE_13.1/"/>
+	</repository>
 
 	<packages type="image">
 		<namedCollection name="base"/>
@@ -117,7 +120,9 @@
 		<package name="NetworkManager-openconnect-gnome"/>
 		<package name="openssh"/>
 		<package name="fs-uae"/>
-<!--		<package name="dwb"/>  -->
+		<package name="dwb"/>  
+		<package name="mc"/>  
+		<package name="pcmanfm"/>  
 
 	</packages>
 	<packages type="iso">
